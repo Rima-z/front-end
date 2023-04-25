@@ -1,0 +1,13 @@
+.texte-centre {
+    text-align: center;
+}
+.case-small {
+    width: 100px;
+    height: 30px;
+  }
+
+  @media print{
+    button{
+        display: none;
+    }
+  }
