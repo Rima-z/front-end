@@ -14,6 +14,7 @@ import { SugrecComponent } from './sugrec/sugrec.component';
 import { TraitementComponent } from './traitement/traitement.component';
 import { AjoutrecComponent } from './ajoutrec/ajoutrec.component';
 import { TestComponent } from './test/test.component';
+import { ToastComponent } from './toast/toast.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: 'login', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'rapportop', component: RapportopComponent },
   { path: 'rapportdent', component: RapportdentComponent },
   { path: 'ajoutrec', component: AjoutrecComponent },
+  { path: 'toast', component: ToastComponent },
   { path: 'test', component: TestComponent }
 
 ];

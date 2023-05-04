@@ -19,6 +19,7 @@ import { RapportopComponent } from './rapportop/rapportop.component';
 import { RapportdentComponent } from './rapportdent/rapportdent.component';
 import { AjoutrecComponent } from './ajoutrec/ajoutrec.component';
 import { TestComponent } from './test/test.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TestComponent } from './test/test.component';
     SugrecComponent,
     RapportdentComponent,
     AjoutrecComponent,
-    TestComponent
+    TestComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

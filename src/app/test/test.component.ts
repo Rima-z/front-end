@@ -1,36 +1,42 @@
-import { Component } from '@angular/core';
-
-import { Router } from '@angular/router';
-
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
   styleUrls: ['./test.component.css']
 })
-export class TestComponent {
-  constructor(private router: Router) { }
-  redirectToProfil() {
-    this.router.navigate(['/profil'], { replaceUrl: true });
+export class TestComponent implements OnInit{
+  userForm: FormGroup;
+  listData: any;
+  constructor(private fb: FormBuilder){
+
+    this.listData = [];
+    this.userForm = this.fb.group({
+      typeReclamations :['', Validators.required],
+      titre : ['', Validators.required],
+      description : ['', Validators.required]
+    })
   }
-  redirectToDashboard() {
-    this.router.navigate(['/dashboard'], { replaceUrl: true });
+  public addItem() : void{
+    this.listData.push(this.userForm.value);
+    this.userForm.reset();
   }
-  redirectToTraitement() {
-    this.router.navigate(['/traitement'], { replaceUrl: true });
+  reset(){
+    this.userForm.reset();
   }
-  redirectToLogin() {
-    this.router.navigate(['/login'], { replaceUrl: true });
+  removeItem(element: any){
+    this.listData.forEach((value: any,index: any)=>{
+    if(value == element)
+    this.listData.splice(index,1)
+  });
+
   }
-  redirectToHistoriquec() {
-    this.router.navigate(['/historiquec'], { replaceUrl: true });
+
+
+  ngOnInit() {
+    
   }
-  redirectToHistoriqued() {
-    this.router.navigate(['/historiqued'], { replaceUrl: true });
-  }
-  redirectToSugrec() {
-    this.router.navigate(['/sugrec'], { replaceUrl: true });
-  }
-  
+
 
 }

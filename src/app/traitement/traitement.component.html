@@ -187,9 +187,9 @@
                           </div>
                                 <div class="col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-3 gap-md-2">
                                   <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                    <label><input type="search" class="form-control" placeholder="Search Invoice" aria-controls="DataTables_Table_0"></label>
+                                    <label><input type="search" class="form-control" placeholder="Recherche" aria-controls="DataTables_Table_0"></label>
                                     &nbsp;
-                                    <button class="btn btn-outline-primary" type="submit">Search</button>
+                                    <button class="btn btn-outline-primary" type="submit">Recherche</button>
                                   </div>
                                  </div></div>
 
@@ -226,19 +226,50 @@
                         
                         <td><span class="badge bg-label-primary me-1">Active</span></td>
                         <td>
-                          <div class="dropdown">
-                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                              <i class="bx bx-message-alt-add"></i>
-                            </button>
-                            <div class="dropdown-menu">
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-message-square-add"></i> Med opt</a
-                              >
-                              <a class="dropdown-item" href="javascript:void(0);"
-                                ><i class="bx bx-message-square-add"></i> Med dent</a
-                              >
+
+                          <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLabel4">Modal title</h5>
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="row">
+                                    <div class="col mb-3">
+                                      <label for="nameExLarge" class="form-label">Name</label>
+                                      <input type="text" id="nameExLarge" class="form-control" placeholder="Enter Name" />
+                                    </div>
+                                  </div>
+                                  <div class="row g-2">
+                                    <div class="col mb-0">
+                                      <label for="emailExLarge" class="form-label">Email</label>
+                                      <input type="text" id="emailExLarge" class="form-control" placeholder="xxxx@xxx.xx" />
+                                    </div>
+                                    <div class="col mb-0">
+                                      <label for="dobExLarge" class="form-label">DOB</label>
+                                      <input type="text" id="dobExLarge" class="form-control" placeholder="DD / MM / YY" />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                  </button>
+                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </div>
                             </div>
                           </div>
+                       
+                          <button type="button" class="btn rounded-pill btn-icon btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exLargeModal">
+                            <span class="tf-icons bx bx-plus"></span>
+                          </button>
                         </td>
 
                       </tr>
