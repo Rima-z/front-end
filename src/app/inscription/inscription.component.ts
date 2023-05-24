@@ -23,7 +23,12 @@ export class InscriptionComponent implements OnInit{
     matricule: new FormControl(''),
     password: new FormControl(''),
     email: new FormControl(''),
-    role:new FormControl('')
+    role:new FormControl(''),
+    tel:new FormControl(''),
+    portable:new FormControl(''),
+    idc:new FormControl(''),
+    idb:new FormControl(''),
+    adresse:new FormControl(''),
 
    
    
@@ -43,6 +48,11 @@ export class InscriptionComponent implements OnInit{
       prenom: ['', [Validators.required, Validators.minLength(4)]],
       matricule: ['', [Validators.required, Validators.minLength(5)]],
       role:['', [Validators.required]],
+      tel:['', [Validators.required]],
+      portable:['', [Validators.required]],
+      idc:['', [Validators.required]],
+      idb:['', [Validators.required]],
+      adresse:['', [Validators.required]],
     });
      
    }
@@ -68,12 +78,18 @@ export class InscriptionComponent implements OnInit{
     this.pharmacien.matricule=this.detailUser.value.matricule
     this.pharmacien.password=this.detailUser.value.password
     this.pharmacien.email=this.detailUser.value.email
+    this.pharmacien.role=this.detailUser.value.role
+    this.pharmacien.tel=this.detailUser.value.tel
+    this.pharmacien.portable=this.detailUser.value.portable
+    this.pharmacien.idc=this.detailUser.value.idc
+    this.pharmacien.idb=this.detailUser.value.idb
+    this.pharmacien.adresse=this.detailUser.value.adresse
+
    
     if (this.detailUser.invalid) {
       return;
     }
-    this.pharmacien.role="PHARMACIEN"
-    //console.log(this.pharmacien)
+    
 
     this.InscriService.createPharmacien(this.pharmacien).subscribe(res=>{
         this.isSuccessful=true
@@ -99,6 +115,8 @@ export class InscriptionComponent implements OnInit{
    // Afficher(){
    //   console.log(this.pharmacien)
    // }
+
+   
  
  }
 

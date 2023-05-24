@@ -171,7 +171,7 @@
                   <div class=" d-flex align-items-center flex-column">
                     <img class="img-fluid rounded my-4" src="\assets\img\doctor.png" height="110" width="110" alt="User avatar">
                     <div class="user-info text-center">
-                      <h4 class="mb-2">Violet Mendoza</h4>
+                      <h4 class="mb-2">{{prenom}}&nbsp;{{nom}}</h4>
                       
                     </div>
                   </div>
@@ -180,11 +180,11 @@
                       <div class="form-part form-left">
                       <small class="text-muted text-uppercase">A propos</small>
                       <ul class="list-unstyled mb-4 mt-3">
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-buildings"></i><span class="fw-semibold mx-2">Discipline:</span> <span>Médecin</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-map"></i><span class="fw-semibold mx-2">Adresse:</span> <span>Route 3000 Tunis</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-credit-card"></i><span class="fw-semibold mx-2">Identité Bancaire:</span> <span>11212121</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-id-card"></i><span class="fw-semibold mx-2">Matricule CNAM:</span> <span>//</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-credit-card-front"></i><span class="fw-semibold mx-2">Matricule Fiscale:</span> <span>0000FER</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-buildings"></i><span class="fw-semibold mx-2">Discipline:</span> <span>{{role}}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-map"></i><span class="fw-semibold mx-2">Adresse:</span> <span>{{adresse}}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-credit-card"></i><span class="fw-semibold mx-2">Identité Bancaire:</span> <span>{{idb}}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-id-card"></i><span class="fw-semibold mx-2">Matricule CNAM:</span> <span>{{idc}}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-credit-card-front"></i><span class="fw-semibold mx-2">Matricule Fiscale:</span> <span>{{matricule}}</span></li>
                         
                       </ul>
                       </div>
@@ -192,9 +192,9 @@
 
                       <small class="text-muted text-uppercase">Contacts</small>
                       <ul class="list-unstyled mb-4 mt-3">
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Téléphone:</span> <span>75862400</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-mobile"></i><span class="fw-semibold mx-2">Portable:</span> <span>22147258</span></li>
-                        <li class="d-flex align-items-center mb-3"><i class="bx bx-envelope"></i><span class="fw-semibold mx-2">E-mail:</span> <span>john.doe@example.com</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-phone"></i><span class="fw-semibold mx-2">Téléphone:</span> <span>{{tel}}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-mobile"></i><span class="fw-semibold mx-2">Portable:</span> <span>{{portable}}</span></li>
+                        <li class="d-flex align-items-center mb-3"><i class="bx bx-envelope"></i><span class="fw-semibold mx-2">E-mail:</span> <span>{{email}}</span></li>
                       </ul>
                       </div>
                       
@@ -234,74 +234,136 @@
                   </div> 
                   <div class="d-flex justify-content-center pt-3">
                    <!--popup-->
-        
-                
-                      
-                   
-                    
-                      <!-- Button -->
-                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Modifier profil</button>
+                  <!-- Button -->
+                  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Modifier profil</button>
 
-                      <!-- Modal -->
-                      <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="modalCenterTitle">Modal title</h5>
-                              <button
-                                type="button"
-                                class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                              ></button>
+                  <!-- Modal -->
+                  <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <div class="container">
+                            <h5 class="modal-title" id="modalCenterTitle" style="text-align: center;">Modifiez votre profil</h5></div>
+                          <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                          ></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row g-2">
+                            <div class="col mb-0">
+                              <label for="emailWithTitle" class="form-label">Nom et Prénom</label>
+                              <input
+                                type="text"
+                                id="emailWithTitle"
+                                class="form-control"
+                                value="{{prenom}} {{nom}}"
+                                
+                              />
                             </div>
-                            <div class="modal-body">
-                              <div class="row">
-                                <div class="col mb-3">
-                                  <label for="nameWithTitle" class="form-label">Name</label>
-                                  <input
-                                    type="text"
-                                    id="nameWithTitle"
-                                    class="form-control"
-                                    placeholder="Enter Name"
-                                  />
-                                </div>
-                              </div>
-                              <div class="row g-2">
-                                <div class="col mb-0">
-                                  <label for="emailWithTitle" class="form-label">Email</label>
-                                  <input
-                                    type="text"
-                                    id="emailWithTitle"
-                                    class="form-control"
-                                    placeholder="xxxx@xxx.xx"
-                                  />
-                                </div>
-                                <div class="col mb-0">
-                                  <label for="dobWithTitle" class="form-label">DOB</label>
-                                  <input
-                                    type="text"
-                                    id="dobWithTitle"
-                                    class="form-control"
-                                    placeholder="DD / MM / YY"
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
-                              </button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
+                            <div class="col mb-0">
+                              <label for="dobWithTitle" class="form-label">Discipline</label>
+                              <input
+                                type="text"
+                                id="dobWithTitle"
+                                class="form-control"
+                                value={{role}}
+                            
+                              />
                             </div>
                           </div>
+                          <div class="row g-2">
+                            <div class="col mb-0">
+                              <label for="emailWithTitle" class="form-label">Email</label>
+                              <input
+                                type="text"
+                                id="emailWithTitle"
+                                class="form-control"
+                                value={{email}}
+                              />
+                            </div>
+                            <div class="col mb-0">
+                              <label for="dobWithTitle" class="form-label">Adresse</label>
+                              <input
+                                type="text"
+                                id="dobWithTitle"
+                                class="form-control"
+                                value={{adresse}}
+                              />
+                            </div>
+                          </div>
+                          <div class="row g-2">
+                            <div class="col mb-0">
+                              <label for="emailWithTitle" class="form-label">Télephone</label>
+                              <input
+                                type="text"
+                                id="emailWithTitle"
+                                class="form-control"
+                                value={{tel}}
+                              />
+                            </div>
+                            <div class="col mb-0">
+                              <label for="dobWithTitle" class="form-label">Portable</label>
+                              <input
+                                type="text"
+                                id="dobWithTitle"
+                                class="form-control"
+                                value={{portable}}
+                              />
+                            </div>
+                          </div>
+                          <div class="row g-2">
+                            <div class="col mb-0">
+                              <label for="emailWithTitle" class="form-label">Matricule CNAM</label>
+                              <input
+                                type="text"
+                                id="emailWithTitle"
+                                class="form-control"
+                                value={{idc}}
+                              />
+                            </div>
+                            <div class="col mb-0">
+                              <label for="dobWithTitle" class="form-label">Matricule Fiscale</label>
+                              <input
+                                type="text"
+                                id="dobWithTitle"
+                                class="form-control"
+                                value={{matricule}}
+                              />
+                            </div>
+                          </div>
+                          
+                          <div class="row g-2">
+                            <div class="col mb-0">
+                              <label for="emailWithTitle" class="form-label">ID Bancaire</label>
+                              <input
+                                type="text"
+                                id="emailWithTitle"
+                                class="form-control"
+                                value={{idb}}
+                              />
+                            </div>
+                            <div class="col mb-0">
+                              
+                            </div>
+  
+                            
+                          </div>
                         </div>
-                      
-                 
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
+                            Annuler
+                          </button>
+                          <button type="button" class="btn btn-primary">Envoyer</button>
+                        </div>
+                      </div>
+                    </div>
                   
-                </div>
              
-            
+              
+            </div>
             <!--/popup-->
                   </div>
                   <br>

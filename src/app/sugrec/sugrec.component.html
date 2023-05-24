@@ -151,7 +151,22 @@
           <div class="content-wrapper">
             <!-- Content -->
             <div class="container-xxl flex-grow-1 container-p-y">
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"></span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suggestion et Réclamation</h4>
+              
+              <div class="pricing-free-trial">
+                <div class="container">
+                  <div class="position-relative">
+                    <div class="d-flex justify-content-between flex-column-reverse flex-lg-row align-items-center py-4 px-5">
+                      <div class="text-center text-lg-start mt-2 ms-3">
+                        <h3 class="text-primary mb-1">Soumettre et Explorer vos Suggestions et Réclamations!</h3>
+                        <br>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalCenter">Ajouter</button>
+                      </div>
+                      <!-- image -->
+                      <img src="\assets\img\suggrec.png" class="img-fluid me-lg-5 pe-lg-1 mb-3 mb-lg-0" alt="Api Key Image" width="350" data-app-dark-img="illustrations/sitting-girl-with-laptop-dark.png" data-app-light-img="illustrations/sitting-girl-with-laptop-light.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
                 <!-- Content -->
                 <div class="container-xxl flex-grow-1 container-p-y">
                   <div class="row">
@@ -159,37 +174,35 @@
                       <div class="card mb-4">
                         <!-- Account -->
                         <div class="card-body">
-                          <form id="formAccountSettings" method="POST" onsubmit="return false">
+                          <form id="formfiltre" >
                             <div class="row">
                               <div class="mb-3 col-md-6">
                                 <label for="lastName" class="form-label">Min date de réception</label>
-                                <input input type="date" [(ngModel)]="startDate" class="form-control invoice-date flatpickr-input active" />
+                                <input input type="date" class="form-control invoice-date flatpickr-input active" />
                               </div>
                               <div class="mb-3 col-md-6">
                                 <label for="lastName" class="form-label">Max date de réception</label>
-                                <input input type="date" [(ngModel)]="endDate" class="form-control invoice-date flatpickr-input active"/>
+                                <input input type="date" class="form-control invoice-date flatpickr-input active"/>
                               </div>
                               <div class="mb-3 col-md-6">
-                                <label for="zipCode" class="form-label">Numéro réclamation</label>
+                                <label for="numerore" class="form-label">Numéro réclamation</label>
                                 <input
                                   type="text"
                                   class="form-control"
-                                  id="zipCode"
-                                  name="zipCode"
-                                  placeholder="231465"
-                                  maxlength="6"
+                                  id="numerore"
+                                  formControlName="numerore"
                                 />
                               </div>
                               <div class="mb-3 col-md-6">
-                                <label class="form-label" for="country">Statut</label>
-                                <select id="country" class="select2 form-select">
-                                  <option value="Australia">En cours de traitement</option>
-                                  <option value="Bangladesh">Traité</option>
+                                <label class="form-label" for="Statut">Statut</label>
+                                <select id="statut" formControlName="statut" class="select2 form-select">
+                                  <option value="En cours de traitement">En cours de traitement</option>
+                                  <option value="Traité">Traité</option>
                                 </select>
                               </div>
                               <div class="mb-3 col-md-6">
-                                <label for="language" class="form-label">Nature</label>
-                                <select id="language" class="select2 form-select">
+                                <label for="nature"  class="form-label">Nature</label>
+                                <select id="nature" formControlName="nature" class="select2 form-select">
                                   <option value="en">Réclamation</option>
                                   <option value="fr">Suggestion</option>
                                 </select>
@@ -213,8 +226,7 @@
                             <!--popup ajouter-->
                                     <div class="mt-3">
                                         <!-- Button -->
-                                          <div class="container">
-                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalCenter">Ajouter</button></div>
+                                         
 
                                                  <!-- Modal -->
                                                     <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
@@ -231,59 +243,53 @@
                           ></button>
                         </div>
                         <div class="modal-body">
-                            <div class="col-md">
-                                <div class="form-check mt-3">
-                                  <input
-                                    name="default-radio-1"
-                                    class="form-check-input"
-                                    type="radio"
-                                    value=""
-                                    id="defaultRadio1"
-                                  />
-                                  <label class="form-check-label" for="defaultRadio1"> Suggestion </label>
-                                </div>
-                                <div class="form-check">
-                                  <input
-                                    name="default-radio-1"
-                                    class="form-check-input"
-                                    type="radio"
-                                    value=""
-                                    id="defaultRadio2"
-                                    checked
-                                  />
-                                  <label class="form-check-label" for="defaultRadio2"> Réclamation </label>
-                                </div>
-                              </div>
-                              <br>
-                              <div class="mb-3">
-                                <label for="defaultSelect" class="form-label">Types de réclamation</label>
-                                <select id="defaultSelect" class="form-select">
-                                  <option></option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                          <form id="ajoutersugrec">  
+                            <div class="form-check mt-3">
+                              <input  class="form-check-input" type="radio" value="Réclamation" id="defaultRadio1"
+                              [(ngModel)]="sugrec.nature" [ngModelOptions]="{standalone: true}">
+                              <label class="form-check-label" for="defaultRadio1">Réclamation</label>
+                            </div>
+                            <div class="form-check mt-3">
+                              <input class="form-check-input" type="radio" value="Suggestion" id="defaultRadio2"
+                              [(ngModel)]="sugrec.nature" [ngModelOptions]="{standalone: true}">
+                              <label class="form-check-label" for="defaultRadio2">Suggestion</label>
+                           </div>
+                            <br>
+                            <div class="mb-3">
+                                <label for="defaultSelect" class="form-label">Type de réclamation</label>
+                                <select id="defaultSelect" class="form-select"
+                                [(ngModel)]="sugrec.type" [ngModelOptions]="{standalone: true}">
+                                  <option value="Adhesion">Adhésion</option>
+                                  <option value="Contrat PS">Contrat PS</option>
+                                  <option value="PDS">Prime de déclaration de salaire</option>
+                                  <option value="Reglement">Règlement Fre PS</option>
+                                  <option value="CRembourcement">Rembourcement</option>
                                 </select>
-                              </div>
-                              <div class="mb-3">
-                                <label for="defaultInput" class="form-label">Titre</label>
-                                <input id="defaultInput" class="form-control" type="text"  />
-                              </div>
-    
-                              <div>
-                                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                              </div>
-                              <br>
-                              <div class="mb-3">
-                                <label for="formFile" class="form-label">Choisissez un fichier</label>
-                                <input class="form-control" type="file" id="formFile" />
-                              </div> 
+                                <div class="mb-3 row">
+                                  <label for="html5-search-input" class="col-md-2 col-form-label">Titre</label>
+                                  <div>
+                                    <input class="form-control" id="html5-search-input"
+                                    [(ngModel)]="sugrec.titre" [ngModelOptions]="{standalone: true}">
+                                  </div>
+                                </div>
+                                
+                                <div>
+                                  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                  [(ngModel)]="sugrec.description" [ngModelOptions]="{standalone: true}"></textarea>
+                                </div>
+                                <br>
+                                
+                            </div>
+                            
+                          
+                        </form>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                             Annuler
                           </button>
-                          <button type="button" class="btn btn-primary">Envoyer</button>
+                          <button (click)="onSubmit()"  class="btn btn-primary" data-bs-dismiss="modal">Envoyer</button>
                         </div>
                       </div>
                     </div>
@@ -298,122 +304,33 @@
                             <table class="table table-hover" >
                              <thead>
                                <tr>
-                                 <th>Numéro réclamation</th>
-                                 <th>Date de création</th>
-                                 <th>Date de dernière modification</th>
-                                 <th>Nature</th>
-                                 <th>Type</th>
-                                 <th>Titre</th>
-                                 <th>Description</th>
-                                 <th>Liste des fichiers</th>
-                                 <th>Statut</th>
+                                 <th style="text-align: center;">Numéro réclamation</th>
+                                 <th style="text-align: center;">Date de création</th>
+                                 <th style="text-align: center;">Date de dernière modification</th>
+                                 <th style="text-align: center;">Nature</th>
+                                 <th style="text-align: center;">Type</th>
+                                 <th style="text-align: center;">Titre</th>
+                                 <th style="text-align: center;">Description</th>
+                                 <th style="text-align: center;">Statut</th>
+                                 <th></th>
                                </tr>
                              </thead>
-                             <tbody class="table-border-bottom-0">
-                               <tr>
-                                 <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>Angular Project</strong></td>
-                                 <td>Albert Cook</td>
-                                 <td>
-                                  
-                                 </td>
-                                 <td><span class="badge bg-label-primary me-1">Active</span></td>
-                                 <td>
-                                   <div class="dropdown">
-                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                       <i class="bx bx-dots-vertical-rounded"></i>
-                                     </button>
-                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-trash me-1"></i> Delete</a
-                                       >
-                                     </div>
-                                   </div>
-                                 </td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                               </tr>
-                               <tr>
-                                 <td><i class="fab fa-react fa-lg text-info me-3"></i> <strong>React Project</strong></td>
-                                 <td>Barry Hunter</td>
-                                 <td>
-                                 </td>
-                                 <td><span class="badge bg-label-success me-1">Completed</span></td>
-                                 <td>
-                                   <div class="dropdown">
-                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                       <i class="bx bx-dots-vertical-rounded"></i>
-                                     </button>
-                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-trash me-1"></i> Delete</a>
-                                     </div>
-                                   </div>
-                                 </td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                               </tr>
-                               <tr>
-                                 <td><i class="fab fa-vuejs fa-lg text-success me-3"></i> <strong>VueJs Project</strong></td>
-                                 <td>Trevor Baker</td>
-                                 <td>
-                                 </td>
-                                 <td><span class="badge bg-label-info me-1">Scheduled</span></td>
-                                 <td>
-                                   <div class="dropdown">
-                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                       <i class="bx bx-dots-vertical-rounded"></i>
-                                     </button>
-                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-edit-alt me-1"></i> Edit</a>
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-trash me-1"></i> Delete</a>
-                                     </div>
-                                   </div>
-                                 </td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                               </tr>
-                               <tr>
-                                 <td>
-                                   <i class="fab fa-bootstrap fa-lg text-primary me-3"></i> <strong>Bootstrap Project</strong>
-                                 </td>
-                                 <td>Jerry Milton</td>
-                                 <td>
-                                  
-                                 </td>
-                                 <td><span class="badge bg-label-warning me-1">Pending</span></td>
-                                 <td>
-                                   <div class="dropdown">
-                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                       <i class="bx bx-dots-vertical-rounded"></i>
-                                     </button>
-                                     <div class="dropdown-menu">
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-edit-alt me-1"></i> Edit</a
-                                       >
-                                       <a class="dropdown-item" href="javascript:void(0);"
-                                         ><i class="bx bx-trash me-1"></i> Delete</a
-                                       >
-                                     </div>
-                                   </div>
-                                 </td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                                 <td></td>
-                               </tr>
-                             </tbody>
+                             <tbody>
+                              <tr *ngFor = "let item of listData">
+                                <td style="text-align: center;">{{item.id}}</td>
+                                <td style="text-align: center;">17/05/2023</td>
+                                <td style="text-align: center;">17/05/2023</td>
+                                <td style="text-align: center;">{{item.nature}}</td>
+                                <td style="text-align: center;">{{item.type}}</td>
+                                <td style="text-align: center;">{{item.titre}}</td>
+                                <td style="text-align: center;">{{item.description}}</td>
+                                <td><span class="badge bg-label-success me-1">en cours</span></td>
+                                <td><button (click)="deleteItem(item)" type="button" class="btn p-0 dropdown-toggle hide-arrow" >
+                                  <i class="bx bx-trash me-1"></i>
+                                </button></td>
+                              </tr>
+                              <!-- Add more rows as needed -->
+                            </tbody>
                            </table>  
                          </div>
                          <br>
@@ -424,13 +341,13 @@
                              <li class="page-item prev">
                                <a class="page-link" href="javascript:void(0);"><i class="tf-icon bx bx-chevrons-left"></i></a>
                              </li>
-                             <li class="page-item">
+                             <li class="page-item active">
                                <a class="page-link" href="javascript:void(0);">1</a>
                              </li>
                              <li class="page-item">
                                <a class="page-link" href="javascript:void(0);">2</a>
                              </li>
-                             <li class="page-item active">
+                             <li class="page-item ">
                                <a class="page-link" href="javascript:void(0);">3</a>
                              </li>
                              <li class="page-item">

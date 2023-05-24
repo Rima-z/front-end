@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -6,7 +6,11 @@ import { map } from "rxjs/operators";
 import { tap } from 'rxjs/operators';
 import { User } from '../models/user.module';
 
-
+const httpOptions={
+  Headers:new HttpHeaders({
+    'Content-Type':'application/json'
+  })
+}
 interface LoginResponse {
   success: boolean;
   message: string;
@@ -37,13 +41,13 @@ export class AuthService {
   // private apiUrl = 'http://localhost:8089/Stage/Pharmacien/authenticate';
 
 
-  private readonly API_URL = 'http://localhost:8089/Stage/Pharmacien/authenticate';
+  private readonly API_URL = 'http://localhost:8089/Stage/Medecin/authenticate';
   
   private loggedIn = new BehaviorSubject<boolean>(false);
 
  
-  login(email: string, password: string): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.API_URL}`, { email, password }).pipe(
+ /* login(email: string, password: string): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.API_URL}`, { email, password },{observe:'response'}).pipe(
       tap(res => {
         if (res.success) {
           localStorage.setItem('token', res.token);
@@ -52,6 +56,15 @@ export class AuthService {
         }
       })
     );
+  }*/
+  login(email:string,password:string):Observable<any>{
+    return this.http.post(
+      this.API_URL,{
+        email,password,httpOptions
+      },{
+        observe:'response'
+      }
+    )
   }
 
   logout(): void {

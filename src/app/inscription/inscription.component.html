@@ -44,54 +44,90 @@
           <div class="card-body">
             <h4 class="mb-2">Inscrivez-vous</h4>
             <form  [formGroup]="detailUser" id="formAuthentication" class="mb-3"  >
-              <div class="mb-3">
-                <label for="username" class="form-label">Nom</label>
-                <input  type="text"
-                formControlName="nom"
-                [ngClass]="{ 'is-invalid': submited && f['nom'].errors }"
-                  class="form-control" id="nom" name="username" placeholder="Enter your username" autofocus />
-              </div>
-              <div class="mb-3">
-                <label for="username" class="form-label">Prénom</label>
-                <input formControlName="prenom"
-                [ngClass]="{ 'is-invalid': submited && f['prenom'].errors }" type="text" class="form-control" id="username" name="username" placeholder="Enter your username"
-                  autofocus />
-              </div>
-              <div class="mb-3">
-                <label for="username" class="form-label">Matricule</label>
-                <input  formControlName="matricule"
-                [ngClass]="{ 'is-invalid': submited && f['matricule'].errors }" type="text" class="form-control" id="username" name="username" placeholder="Enter your username"
-                  autofocus />
-              </div>
-              <div class="mb-3">
-                <label for="email" class="form-label">E-mail</label>
-                <input  formControlName="email"
-                [ngClass]="{ 'is-invalid': submited && f['email'].errors }" type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
-              </div>
-           
-             
-              <div class="mb-3 form-password-toggle">
-                <label class="form-label" for="password">Mot de passe</label>
-                <div class="input-group input-group-merge">
-                  <input type="password" id="password" class="form-control" name="password"
-                  formControlName="password"
+              <div class="row">
+                <div class="mb-3 col-md-6">
+                  <label for="username" class="form-label">Nom</label>
+                  <input  type="text"
+                  formControlName="nom"
                   [ngClass]="{ 'is-invalid': submited && f['nom'].errors }"
-                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                    aria-describedby="password" />
-                  <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    class="form-control" id="nom" name="username" autofocus />
                 </div>
+                <div class="mb-3 col-md-6">
+                  <label for="username" class="form-label">Prénom</label>
+                  <input formControlName="prenom"
+                  [ngClass]="{ 'is-invalid': submited && f['prenom'].errors }" type="text" class="form-control"  
+                    autofocus />
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="email" class="form-label">E-mail</label>
+                  <input  formControlName="email"
+                  [ngClass]="{ 'is-invalid': submited && f['email'].errors }" type="text" class="form-control" id="email" name="email"/>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="address" class="form-label">Adresse</label>
+                  <input formControlName="adresse" 
+                  [ngClass]="{ 'is-invalid': submited && f['adresse'].errors }" type="text" class="form-control" autofocus/>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="state" class="form-label">telephone</label>
+                  <input formControlName="tel" 
+                  [ngClass]="{ 'is-invalid': submited && f['tel'].errors }" type="text" class="form-control" autofocus/>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="state" class="form-label">portable</label>
+                  <input formControlName="portable" 
+                  [ngClass]="{ 'is-invalid': submited && f['portable'].errors }" type="text" class="form-control" autofocus/>
+                </div>
+
+
+                <div class="mb-3 col-md-6">
+                  <label for="username" class="form-label">Matricule</label>
+                  <input  formControlName="matricule"
+                  [ngClass]="{ 'is-invalid': submited && f['matricule'].errors }" type="text" class="form-control"
+                    autofocus />
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="state" class="form-label">matricule cnam</label>
+                  <input formControlName="idc" 
+                  [ngClass]="{ 'is-invalid': submited && f['idc'].errors }" type="text" class="form-control" autofocus/>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="zipCode" class="form-label">identite bancaire</label>
+                  <input formControlName="idb" 
+                  [ngClass]="{ 'is-invalid': submited && f['idb'].errors }" type="text" class="form-control" autofocus/>
+                </div>
+
+                <div class="mb-3 col-md-6">
+                  <label for="username" class="form-label">Vous etes un :</label>
+                  <select formControlName="role"
+                  class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
+                    <option selected="">Choisir une option</option>
+                    <option value="Opticien">Opticien</option>
+                    <option value="Dentiste">Dentiste</option>
+                  </select>
+                  </div>
+                
+                
+                <div class="mb-3 col-md-6">
+                  <label class="form-label" for="password">Mot de passe</label>
+                  <div class="input-group input-group-merge">
+                    <input type="password" id="password" class="form-control" name="password"
+                    formControlName="password"
+                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                      aria-describedby="password" />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                  </div>
+                </div>
+                <button class="btn btn-primary d-grid w-100" type="submit"
+                (click)="signup()">
+                S'inscrire</button>
               </div>
-              <div class="mb-3">
-                <label for="username" class="form-label">Vous etes un :</label>
-                <select formControlName="role"
-                [ngClass]="{ 'is-invalid': submited && f['role'].errors }" class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
-                  <option selected="">Choisir une option</option>
-                  <option value="1">Opticien</option>
-                  <option value="2">Dentiste</option>
-                </select>
-              </div>
-              <button class="btn btn-primary d-grid w-100" type="submit"
-                (click)="signup()">S'inscrire</button>
             </form>
             <p class="text-center">
               <span>Vous avez un compte?</span>

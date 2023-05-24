@@ -8,8 +8,12 @@ export class Inscri {
       role!:string;
       isActivated!:boolean;
       cin!:string;
-      tel!:string;
+      tel!:number;
       ville!:string;
-      addresse!:string
-      zip!:string
+      adresse!:string;
+      zip!:string;
+      portable!:number;
+      idc!:string;
+      idb!:number;
+
   }

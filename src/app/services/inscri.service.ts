@@ -10,12 +10,12 @@ const httpOptions = {
   }),
 };
 
-const SIGN_UP_URL ="http://localhost:8089/Stage/Pharmacien/register-pharmacien"
+const SIGN_UP_URL ="http://localhost:8089/Stage/Medecin/register-medecin"
 @Injectable({
   providedIn: 'root'
 })
 export class InscriService {
-  private baseUrl = 'http://localhost:8080/Stage/pharmacien/register-pharmacien';
+  private baseUrl = 'http://localhost:8089/Stage/Medecin/register-medecin';
 
   constructor(private http: HttpClient, private router: Router) { }
  
@@ -29,7 +29,12 @@ export class InscriService {
         matricule: pharmacien.matricule,
         password: pharmacien.password,
         email: pharmacien.email,
-        role: 'PHARMACIEN',
+        role: pharmacien.role,
+        tel: pharmacien.tel,
+        portable: pharmacien.portable,
+        idb: pharmacien.idb,
+        idc: pharmacien.idc,
+        adresse: pharmacien.adresse,
       },
       { observe: 'response' }
     );
