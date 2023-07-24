@@ -6,6 +6,6 @@ export class traitement {
     num?: number;
     dater?: string;
     statut?: string;
-    détail?: string;
+    nomFile?: string;
     action?: string;
   }

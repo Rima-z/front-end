@@ -147,9 +147,14 @@
               <div class="input-group">
                 <select class="form-select" id="inputGroupSelect01">
                   <option selected="">Police</option>
-                  <option value="1">12566889</option>
-                  <option value="2">12654893</option>
-                  <option value="3">14256987</option>
+                  <option value="1">DOUANE</option>
+                  <option value="2">BIAT</option>
+                  <option value="3">NEXUS</option>
+                  <option value="3">DENIFEER</option>
+                  <option value="3">NEXUS GLOBAL BANKING</option>
+                  <option value="3">DENG</option>
+                  <option value="3">YAZAKI BIZERTE</option>
+                  <option value="3">YAZAKI GAFSA</option>
                 </select>
               </div>
               <!-- Tabs -->
@@ -228,12 +233,12 @@
                            <table class="table table-hover" >
                              <thead>
                                <tr>
-                                 <th>N° Transaction</th>
-                                 <th>N° Bordereau</th>
-                                 <th>Matricule de l'assuré</th>
-                                 <th>Nom de l'assuré</th>
-                                 <th>Nom du bénéficiaire</th>
-                                 <th>Médecin</th>
+                                 <th style="text-align: center;">N° Transaction</th>
+                                 <th style="text-align: center;">N° Bordereau</th>
+                                 <th style="text-align: center;">Matricule de l'assuré</th>
+                                 <th style="text-align: center;">Nom de l'assuré</th>
+                                 <th style="text-align: center;">Nom du bénéficiaire</th>
+                                 <th style="text-align: center;">Médecin</th>
                                </tr>
                              </thead>
                              <tbody class="table-border-bottom-0">
@@ -322,25 +327,21 @@
                              <table class="table table-hover" >
                                <thead>
                                  <tr>
-                                   <th><div class="form-check d-flex justify-content-center">
-                                    <input class="form-check-input" type="checkbox" id="defaultCheck9">
-                                  </div> </th>
-                                   <th>N° Transaction</th>
-                                   <th>Matricule de l'assuré</th>
-                                   <th>Nom de l'assuré</th>
-                                   <th>Nom du bénéficiaire</th>
-                                   <th>Médecin</th>
-                                   <th>N° Consultation</th>
-                                   <th>Date transaction</th>
-                                   <th>Montant du Ticket Modérateur</th>
-                                   <th>Rest a payer</th>
+                                   <th><input type="checkbox" [(ngModel)]="selectAll" (change)="selectAllItems()" /></th>
+                                   <th style="text-align: center;" >N° Transaction</th>
+                                   <th style="text-align: center;">Matricule de l'assuré</th>
+                                   <th style="text-align: center;">Nom de l'assuré</th>
+                                   <th style="text-align: center;">Nom du bénéficiaire</th>
+                                   <th style="text-align: center;">Médecin</th>
+                                   <th style="text-align: center;">N° Consultation</th>
+                                   <th style="text-align: center;">Date transaction</th>
+                                   <th style="text-align: center;">Montant du Ticket Modérateur</th>
+                                   <th style="text-align: center;">Rest a payer</th>
                                  </tr>
                                </thead>
                                <tbody class="table-border-bottom-0">
                                 <tr *ngFor = "let item of list" >
-                                   <td><div class="form-check d-flex justify-content-center">
-                                    <input class="form-check-input" type="checkbox" id="defaultCheck1">
-                                  </div></td>
+                                   <td><input type="checkbox" [(ngModel)]="item.checked" (change)="onItemChange(item)"/></td>
                                   <td style="text-align: center;">{{item.numt}}</td>
                                   <td style="text-align: center;">{{item.matricule}}</td>
                                   <td style="text-align: center;">{{item.noma}}</td>
@@ -389,7 +390,7 @@
                         </div>
                         </div>
                         <div class="container">
-                          <button type="button" class="btn btn-success" id="mon-bouton" data-bs-toggle="modal" data-bs-target="#modalCenter">Générer borddereaux</button>
+                          <button type="button" class="btn btn-success" id="mon-bouton" data-bs-toggle="modal" data-bs-target="#modalCenter">Générer bordereaux</button>
 
                     </div>
 
@@ -415,7 +416,8 @@
                                   type="text"
                                   id="nameWithTitle"
                                   class="form-control"
-                                  placeholder="Enter Name"
+                                  readonly
+                                  placeholder="DOUANE"
                                 />
                               </div>
                             </div>
@@ -425,14 +427,21 @@
                                 <input
                                   type="text"
                                   id="nameWithTitle"
-                                  class="form-control"/>
+                                  class="form-control"
+                                  readonly
+                                  placeholder="4"
+                                  />
                               </div>
+                              
                               <div class="col mb-0">
                                 <label for="dobWithTitle" class="form-label">Date de facturation</label>
                                 <input
                                   type="text"
                                   id="dobWithTitle"
                                   class="form-control"
+                                  readonly
+                                  placeholder="07-06-2023"
+                                  
                                 />
                               </div>
                             </div>
@@ -443,6 +452,7 @@
                                   type="text"
                                   id="nameWithTitle"
                                   class="form-control"
+                                  [(ngModel)]="bordereau.numf" [ngModelOptions]="{standalone: true}"
                                 />
                               </div>
                               <div class="col mb-0">
@@ -451,6 +461,8 @@
                                   type="text"
                                   id="dobWithTitle"
                                   class="form-control"
+                                  [(ngModel)]="bordereau.montant" [ngModelOptions]="{standalone: true}"
+
                                 />
                               </div>
                               <div>
@@ -463,7 +475,7 @@
                             <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                               Annuler
                             </button>
-                            <button type="button" class="btn btn-primary">Valider</button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="onSubmit()">Valider</button>
                           </div>
                         </div>
                       </div>
@@ -479,11 +491,11 @@
                         <table class="table table-hover">
                           <thead>
                             <tr>
-                              <th>Référence</th>
-                              <th>date de facturation</th>
-                              <th>nombre de consultations</th>
-                              <th>N° facture</th>
-                              <th>montant bordereaux</th>
+                              <th style="text-align: center;">Référence</th>
+                              <th style="text-align: center;">date de facturation</th>
+                              <th style="text-align: center;">nombre de consultations</th>
+                              <th style="text-align: center;">N° facture</th>
+                              <th style="text-align: center;">montant bordereaux</th>
                             </tr>
                           </thead>
                           <tbody class="table-border-bottom-0">

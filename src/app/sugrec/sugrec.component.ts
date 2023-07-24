@@ -15,7 +15,10 @@ import { sugrecService } from '../services/sugrec.service';
 export class SugrecComponent implements OnInit {
 
   sugrec: sugrec = new sugrec();
-  listData: any[]=[]
+  listData: any[]=[];
+  idT:any;
+  searchTerm: string = '';
+  
 
 
 
@@ -106,34 +109,9 @@ onSubmit(){
   close();
   this.listData.push(this.myForm.value);
   window.location.reload()
+
 }
 
-/*
-signup(){
-  this.submited=true
-  this.pharmacien.nom=this.detailUser.value.nom
-  this.pharmacien.prenom=this.detailUser.value.prenom
-  this.pharmacien.matricule=this.detailUser.value.matricule
-  this.pharmacien.password=this.detailUser.value.password
-  this.pharmacien.email=this.detailUser.value.email
- 
-  if (this.detailUser.invalid) {
-    return;
-  }
-  this.pharmacien.role="PHARMACIEN"
-  //console.log(this.pharmacien)
-
-  this.InscriService.createPharmacien(this.pharmacien).subscribe(res=>{
-      this.isSuccessful=true
-
-        this.router.navigate(['/login']);
-      
-  },err=>{
-
-   console.log("erreur")
-  })
-}
-*/
 createSugRec(){
   this.sugRecService.addSugRec(this.sugrec).subscribe( data =>{
     this.sugrec=data
@@ -160,5 +138,19 @@ deleteItem(item: any) {
     this.listData.splice(index, 1);
   }
 }
+
+
+deleteSugrec(idT : any) {
+  this.sugRecService.deleteSugRec(idT).subscribe(
+    () => {
+      // Handle successful deletion if needed
+    },
+    (error) => {
+      console.error('Error deleting sug_rec:', error);
+    }
+  );
+  window.location.reload()
+}
+
 
 }

@@ -13,9 +13,9 @@ import { traitementService } from '../services/tretement.service';
 export class TraitementComponent implements OnInit {
 
   // traitement: traitement = new traitement();
-  listt: any[]=[]
+  listt: any[]=[];
 
-
+  searchTerm: string = '';
 
 
   constructor(private router: Router,  private traitementService: traitementService,) {
@@ -46,6 +46,9 @@ export class TraitementComponent implements OnInit {
   }
   redirectToSugrec() {
     this.router.navigate(['/sugrec'], { replaceUrl: true });
+  }
+  redirectToRapportdent() {
+    this.router.navigate(['/rapportdent'], { replaceUrl: true });
   }
 
   ngOnInit(): void {

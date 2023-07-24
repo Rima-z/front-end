@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +9,18 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent {
 
-  constructor(private router: Router) { }
+
+  apiUrl = 'http://localhost:8089/Stage/api';
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer your_token'
+    })
+  };
+
+  constructor(private router: Router, private http: HttpClient) { }
+
+
   redirectToProfil() {
     this.router.navigate(['/profil'], { replaceUrl: true });
   }
@@ -29,6 +41,20 @@ export class DashboardComponent {
   }
   redirectToSugrec() {
     this.router.navigate(['/sugrec'], { replaceUrl: true });
+  }
+
+
+  appelAPI() {
+    this.http.get(this.apiUrl, this.httpOptions).subscribe(
+      (response) => {
+        // Gérez la réponse de l'API ici
+        console.log(response);
+      },
+      (error) => {
+        // Gérez les erreurs ici
+        console.error(error);
+      }
+    );
   }
   
 }

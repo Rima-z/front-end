@@ -9,4 +9,5 @@ export class consultation {
     date?:string;
     montant?:number;
     reste?:number;
+    checked?: boolean;
 }

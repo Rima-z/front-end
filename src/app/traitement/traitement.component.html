@@ -187,7 +187,7 @@
                           </div>
                                 <div class="col-12 col-md-6 d-flex align-items-center justify-content-end flex-column flex-md-row pe-3 gap-md-2">
                                   <div id="DataTables_Table_0_filter" class="dataTables_filter">
-                                    <label><input type="search" class="form-control" placeholder="Recherche" aria-controls="DataTables_Table_0"></label>
+                                    <label><input type="search" class="form-control" placeholder="Recherche" aria-controls="DataTables_Table_0" [(ngModel)]="searchTerm"></label>
                                     &nbsp;
                                     <button class="btn btn-outline-primary" type="submit">Recherche</button>
                                   </div>
@@ -201,49 +201,375 @@
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>Contractant</th>
-                        <th>Matricule Adhérent</th>
-                        <th>Adhérent</th>
-                        <th>N° dossier</th>
-                        <th>Date Réception</th>
-                        <th>Statut</th>
+                        <th style="text-align: center;">Contractant</th>
+                        <th style="text-align: center;">Matricule Adhérent</th>
+                        <th style="text-align: center;">Adhérent</th>
+                        <th style="text-align: center;">N° dossier</th>
+                        <th style="text-align: center;">Date Réception</th>
+                    
                         <th>Détails</th>
                         <th>Action</th>
                       </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                       <tr tr *ngFor = "let item of listt">
+                        <ng-container *ngIf="item.matricule.toLowerCase().includes(searchTerm.toLowerCase()) || item.matricule.includes(searchTerm)">
                         <td style="text-align: center;">{{item.contractant}}</td>
                         <td style="text-align: center;">{{item.matricule}}</td>
                         <td style="text-align: center;">{{item.adherent}}</td>
                         <td style="text-align: center;">{{item.num}}</td>
                         <td style="text-align: center;">{{item.dater}}</td>
-                        <td style="text-align: center;">{{item.statut}}</td>
-                        <td style="text-align: center;">{{item.detail}}</td>
-                        <td style="text-align: center;">{{item.detail}}</td>
-                        <td style="text-align: center;">{{item.action}}</td>
-                       
+                        <td style="text-align: center;">{{item.nomFile}}</td>
+                        <td style="text-align: center;"><button type="button" class="btn rounded-pill btn-icon btn-outline-primary" ><span class="tf-icons bx bx-plus" (click)="redirectToRapportdent()" ></span></button></td>
+                      </ng-container>
                       </tr>
-                      
-                    <!-- <tbody>
-                              <tr *ngFor = "let item of listData" >
-                                <td style="text-align: center;">{{item.id}}</td>
-                                <td style="text-align: center;">17/05/2023</td>
-                                <td style="text-align: center;">17/05/2023</td>
-                                <td style="text-align: center;">{{item.nature}}</td>
-                                <td style="text-align: center;">{{item.type}}</td>
-                                <td style="text-align: center;">{{item.titre}}</td>
-                                <td style="text-align: center;">{{item.description}}</td>
-                                <td style="text-align: center;"><i class="btn btn-file"><button class="file-blank"></button></i></td>
-                                <td><span class="badge bg-label-success me-1">en cours</span></td>
-                              </tr>
-                            </tbody> -->
                      
                      
                     </tbody>
                   </table>  
                 </div>
                 <br>
+                <div class="container-xxl flex-grow-1 container-p-y">
+              
+
+                  <!-- Bootstrap modals -->
+                 
+                   
+                    <hr class="m-0" />
+                    
+                      <div class="row gy-3">
+                        <!-- Modal Sizes -->
+                        <div class="col-lg-4 col-md-6">
+                          
+                          <!-- Extra Large Modal -->
+                          <div class="modal fade" id="exLargeModal" tabindex="-1" aria-hidden="true">
+                            <div class="modal-dialog modal-xl" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <div class="container">
+                                    <h5 class="modal-title" id="modalCenterTitle" style="text-align: center;">Rapport de contre visite</h5></div>
+                                  
+                                  <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                  ></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form class="card-body" >
+                                   
+                                 <div class="col-md-4" >
+                                        <div class="mb-3 row">
+                                            <label for="html5-text-input" class="col-md-2 col-form-label">N°</label>
+                                            <div class="col-md-10" >
+                                              <input class="form-control" type="number" />
+                                            </div>
+                                          </div> 
+                                </div>
+                                  <div class="row g-3">
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-confirm-password">Date:</label>
+                                      <div class="input-group input-group-merge">
+                                          <input type="date" id="multicol-email" class="form-control">
+                                      </div>
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-username">Mr / Mme / Mlle : </label>
+                                      <input type="text" id="multicol-username" class="form-control">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-email">Bénéficiaire:</label>
+                                      <div class="input-group input-group-merge">
+                                        <input type="text" id="multicol-email" class="form-control">
+                                      </div>
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="multicol-password">Qualité de bénéficiaire:</label>
+                                        <div class="input-group input-group-merge">
+                                            <div class="col-md">
+                                                <div class="form-check form-check-inline mt-3">
+                                                  <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="inlineRadioOptions"
+                                                    id="inlineRadio1"
+                                                    value="option1"
+                                                  />
+                                                  <label class="form-check-label" for="inlineRadio1">Lui-même</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                  <input
+                                                    class="form-check-input"
+                                                    type="radio"
+                                                    name="inlineRadioOptions"
+                                                    id="inlineRadio2"
+                                                    value="option2"
+                                                  />
+                                                  <label class="form-check-label" for="inlineRadio2">Conjoint</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input
+                                                      class="form-check-input"
+                                                      type="radio"
+                                                      name="inlineRadioOptions"
+                                                      id="inlineRadio3"
+                                                      value="option3"
+                                                    />
+                                                    <label class="form-check-label" for="inlineRadio2">Enfant</label>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                      
+                                    </div>
+            
+                                    
+                                    <div class="col-md-6">                         
+                                      <label class="form-label" for="multicol-confirm-password">Adhésion:</label>
+                                      <div class="input-group input-group-merge">
+                                          <input type="text" id="multicol-email" class="form-control">
+                                      </div>
+                             </div>
+                                   
+                                    <div class="col-md-6">
+                                          <label class="form-label" for="multicol-confirm-password">Numéro du dossier:</label>
+                                          <div class="input-group input-group-merge">
+                                              <input type="text" id="multicol-email" class="form-control">
+                                          </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+            
+                                    </div>
+            
+                                  </div>
+            
+                                  <form class="card-body">
+            
+                                    <!-- Tableau 1 -->
+                                   
+                                       <div class="table-responsive text-nowrap">
+                                         <table class="table table-borderless" style="width: 30%;">
+                                           <thead style="background-color: rgb(158, 158, 158);">
+                                             <tr>
+                                               <th colspan="5" style="text-align: center;">ACTES DE SOINS DENTAIRES</th>
+                                             </tr>
+                                           </thead>
+                                           <thead style="background-color: rgb(255, 255, 255);">
+                                             <tr>
+                                               <th colspan="5" style="text-align: center;">Il est indispensable d’indiquer la dent traitée, de désigner les actes pratiqués <br>en se référant aux codes
+                                 
+                                                 et cotations de la nomenclature officielle</th>
+                                             </tr>
+                                           </thead>
+                                           <thead style="background-color: rgb(158, 158, 158);">
+                                 
+                                             <tr>
+                                               
+                                               <th class="case-small">DATE</th>
+                                               <th class="case-small">DENT</th>
+                                               <th class="case-small">CODE ACTE</th>
+                                               <th class="case-small">COTATION</th>
+                                               <th class="case-small">Avis médical</th>
+                                             </tr>
+                                           </thead>
+                                          
+                                           <tbody>
+                                             <tr>
+                                               <td>
+                                                 <input type="date" class="case-small">
+                                               </td>
+                                               <td> <input type="number" class="case-small"></td>
+                                               <td><input type="text" class="case-small"> 
+                                               </td>
+                                               <td><input type="number" class="case-small">
+                                               </td>
+                                               <td>
+                                                 <input type="text" class="case-small"> 
+                                               </td>
+                                             </tr>
+                                             <tr>
+                                               <td>
+                                                 <input type="date" class="case-small">
+                                               </td>
+                                               <td> <input type="number" class="case-small"></td>
+                                               <td><input type="text" class="case-small"> 
+                                               </td>
+                                               <td><input type="number" class="case-small">
+                                               </td>
+                                               <td>
+                                                 <input type="text" class="case-small"> 
+                                               </td>
+                                             </tr>
+                                             <tr>
+                                               <td>
+                                                 <input type="date" class="case-small">
+                                               </td>
+                                               <td> <input type="number" class="case-small"></td>
+                                               <td><input type="text" class="case-small"> 
+                                               </td>
+                                               <td><input type="number" class="case-small">
+                                               </td>
+                                               <td>
+                                                 <input type="text" class="case-small"> 
+                                               </td>
+                                             </tr>
+                                           </tbody>
+                                         </table>
+                                       </div>
+                                     
+                                 <!-- /Tableau 1 -->
+                                 
+                                 <br>
+                                 <img  src="\assets\img\DENTIST.png" style="display: block; margin: auto;" id="dents">
+                                 <br>
+            
+                                   
+                                     <div class="table-responsive text-nowrap">
+                                         
+            <style>
+                table, th, td {
+                    margin-left: auto;
+                    margin-right: auto;
+                    border-collapse: collapse
+                }
+            </style>
+                                       <table class="table table-borderless" style="width: 50%;">
+                                         <thead style="background-color: rgb(158, 158, 158);">
+                                           <tr>
+                                             <th colspan="5" style="text-align: center;">PROTHESES DENTAIRES</th>
+                                           </tr>
+                                         </thead>
+                                         <thead style="background-color: rgb(204, 197, 197);">
+                                 
+                                           <tr>
+                                             
+                                             <th  class="case-small">DATE</th>
+                                             <th  class="case-small">DENT</th>
+                                             <th  class="case-small">CODE ACTE</th>
+                                             <th  class="case-small">COTATION</th>
+                                             <th  class="case-small">Avis médical</th>
+                                           </tr>
+                                         </thead>
+                                         
+                                         <tbody>
+                                           <tr>
+                                             <td>
+                                               <input type="date"  class="case-small">
+                                             </td>
+                                             <td> <input type="number"  class="case-small"></td>
+                                             <td><input type="text"  class="case-small"> 
+                                             </td>
+                                             <td><input type="number"  class="case-small">
+                                             </td>
+                                             <td>
+                                               <input type="text"  class="case-small"> 
+                                             </td>
+                                           </tr>
+                                         </table>
+                                       </div>
+                                     
+                                 
+                                 </form>
+                               
+            
+                                  <div class="row g-3">
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-confirm-password">Prix de la monture:</label>
+                                      <div class="input-group input-group-merge">
+                                          <input type="number" id="multicol-email" class="form-control">
+                                      </div>
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-username">Nature des verres achetés: </label>
+                                      <input type="text" id="multicol-username" class="form-control">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-email">Prix des verres achetés:</label>
+                                      <div class="input-group input-group-merge">
+                                        <input type="number" id="multicol-email" class="form-control">
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">                         
+                                      <label class="form-label" for="multicol-confirm-password">Prix des verres en blanc:</label>
+                                      <div class="input-group input-group-merge">
+                                          <input type="number" id="multicol-email" class="form-control">
+                                      </div>
+                             </div>
+                                   
+                                    <div class="col-md-6">
+                                          <label class="form-label" for="multicol-confirm-password">Numéro du dossier:</label>
+                                          <div class="input-group input-group-merge">
+                                              <input type="text" id="multicol-email" class="form-control">
+                                          </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6">
+            
+                                    </div>
+            
+                                  </div>
+            
+                                  <hr _ngcontent-xqg-c55="" class="my-5">
+            
+                                  <div class="row g-3">
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-confirm-password">Observation:</label>
+                                      <div class="input-group input-group-merge">
+                                          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                      </div>
+                                  </div>
+            
+                                  <div class="col-md-6">
+            
+                                  </div>
+            
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-username">Téléphone: </label>
+                                      <input type="tel" id="multicol-username" class="form-control">
+                                    </div>
+            
+                                    <div class="col-md-6">
+                                      <label class="form-label" for="multicol-email">Opticien:</label>
+                                      <div class="input-group input-group-merge">
+                                        <input type="text" id="multicol-email" class="form-control">
+                                      </div>
+                                    </div>
+                                    
+                                  </div>
+            
+                                  <div class="pt-4">
+                                    
+                                    <button type="button" class="btn btn-primary me-sm-3 me-1" data-bs-dismiss="modal">Confirmer</button>
+                                    <button type="button" onClick="window.print()" class="btn btn-outline-primary me-sm-3 me-1">Imprimer</button>
+                                  
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                      Supprimer
+                                    </button>
+                                  </div>
+                                 
+                                  
+                                </form>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                          
+                        </div>
+                      </div>
+                   
+                  
+                  <!--/ Bootstrap modals -->
+                </div>
                 <!--next-->
                 <div class="demo-inline-spacing">
                 <nav aria-label="Page navigation">

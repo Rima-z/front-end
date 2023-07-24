@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { sugrec } from "../models/sugrec.model";
 
 @Pipe({name:'SuggRecFilter'})
-export class SuggRecPipe implements PipeTransform {
+export class SuggRecPipe2 implements PipeTransform {
 
 
     transform(value: sugrec[],filter:string):sugrec[] {

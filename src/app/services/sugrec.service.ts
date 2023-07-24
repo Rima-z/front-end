@@ -12,7 +12,7 @@ export class sugrecService{
 
     private addUrl = 'http://localhost:8089/Stage/SugRec/add';
     private listUrl = 'http://localhost:8089/Stage/SugRec/liste';
-    private deleteUrl = 'http://localhost:8089/Stage/SugRec/delete';
+    private deleteUrl = 'http://localhost:8089/Stage';
 
     constructor(private http: HttpClient){
     }
@@ -28,4 +28,9 @@ export class sugrecService{
       const url = 'http://localhost:8089/Stage/SugRec/liste'; // Replace with the actual endpoint to fetch sug_rec data
       return this.http.get<any[]>(url);
     }
+    deleteSugRec(id: number): Observable<void> {
+      const url = `${this.deleteUrl}/SugRec/delete/${id}`;
+      return this.http.delete<void>(url);
+    }
+    
 }

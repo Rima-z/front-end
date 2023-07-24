@@ -20,6 +20,8 @@ import { RapportdentComponent } from './rapportdent/rapportdent.component';
 import { AjoutrecComponent } from './ajoutrec/ajoutrec.component';
 import { TestComponent } from './test/test.component';
 import { ToastComponent } from './toast/toast.component';
+import { SuggRecPipe } from './sugrec/sugrec-pipe';
+import { SuggRecPipe2 } from './Pipe/pipe-filter';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ToastComponent } from './toast/toast.component';
     AjoutrecComponent,
     TestComponent,
     ToastComponent,
+    SuggRecPipe,
+    SuggRecPipe2
    
   ],
   imports: [

@@ -298,15 +298,26 @@
               <!--/popup ajouter-->
             </div>
            </div>
-                          <div class="table-responsive text-nowrap">
-                             <div class="row mx-5">
-                     </div>
+           <h6 class="card-header">
+            <span class="text-muted fw-light">Le nombre d'éléments à afficher</span></h6>
+           <div class="table-responsive text-nowrap">
+              
+            <div class="row ms-2 me-3">
+              <div class="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                <div class="dataTables_length" id="DataTables_Table_0_length">
+                  <label><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-select">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option></select></label></div>
+                    </div>
+                          </div>
+                             <br>
                             <table class="table table-hover" >
                              <thead>
                                <tr>
                                  <th style="text-align: center;">Numéro réclamation</th>
                                  <th style="text-align: center;">Date de création</th>
-                                 <th style="text-align: center;">Date de dernière modification</th>
                                  <th style="text-align: center;">Nature</th>
                                  <th style="text-align: center;">Type</th>
                                  <th style="text-align: center;">Titre</th>
@@ -317,15 +328,15 @@
                              </thead>
                              <tbody>
                               <tr *ngFor = "let item of listData">
+                                
                                 <td style="text-align: center;">{{item.id}}</td>
-                                <td style="text-align: center;">17/05/2023</td>
                                 <td style="text-align: center;">17/05/2023</td>
                                 <td style="text-align: center;">{{item.nature}}</td>
                                 <td style="text-align: center;">{{item.type}}</td>
                                 <td style="text-align: center;">{{item.titre}}</td>
                                 <td style="text-align: center;">{{item.description}}</td>
                                 <td><span class="badge bg-label-success me-1">en cours</span></td>
-                                <td><button (click)="deleteItem(item)" type="button" class="btn p-0 dropdown-toggle hide-arrow" >
+                                <td><button (click)="deleteSugrec(item.id)" type="button" class="btn p-0 dropdown-toggle hide-arrow" >
                                   <i class="bx bx-trash me-1"></i>
                                 </button></td>
                               </tr>

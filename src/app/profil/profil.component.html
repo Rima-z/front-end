@@ -240,6 +240,7 @@
                   <!-- Modal -->
                   <div class="modal fade" id="modalCenter" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
+                      <form id="ajoutermodifier">
                       <div class="modal-content">
                         <div class="modal-header">
                           <div class="container">
@@ -254,97 +255,104 @@
                         <div class="modal-body">
                           <div class="row g-2">
                             <div class="col mb-0">
-                              <label for="emailWithTitle" class="form-label">Nom et Prénom</label>
+                              <label for="nomprenomm" class="form-label">Nom et Prénom</label>
                               <input
                                 type="text"
-                                id="emailWithTitle"
+                                id="nomprenomm"
                                 class="form-control"
                                 value="{{prenom}} {{nom}}"
+                                [(ngModel)]="Modifier.nomprenomm" [ngModelOptions]="{standalone: true}"
+
                                 
                               />
                             </div>
                             <div class="col mb-0">
-                              <label for="dobWithTitle" class="form-label">Discipline</label>
+                              <label for="emailm" class="form-label">Email</label>
                               <input
                                 type="text"
-                                id="dobWithTitle"
-                                class="form-control"
-                                value={{role}}
-                            
-                              />
-                            </div>
-                          </div>
-                          <div class="row g-2">
-                            <div class="col mb-0">
-                              <label for="emailWithTitle" class="form-label">Email</label>
-                              <input
-                                type="text"
-                                id="emailWithTitle"
+                                id="emailm"
                                 class="form-control"
                                 value={{email}}
+                                [(ngModel)]="Modifier.emailm" [ngModelOptions]="{standalone: true}"
                               />
                             </div>
-                            <div class="col mb-0">
-                              <label for="dobWithTitle" class="form-label">Adresse</label>
-                              <input
-                                type="text"
-                                id="dobWithTitle"
-                                class="form-control"
-                                value={{adresse}}
-                              />
-                            </div>
+                           
                           </div>
                           <div class="row g-2">
+                            
                             <div class="col mb-0">
-                              <label for="emailWithTitle" class="form-label">Télephone</label>
+                              <label for="adressem" class="form-label">Adresse</label>
                               <input
                                 type="text"
-                                id="emailWithTitle"
+                                id="adressem"
                                 class="form-control"
-                                value={{tel}}
+                                value={{adresse}}
+                                [(ngModel)]="Modifier.adressem" [ngModelOptions]="{standalone: true}"
                               />
                             </div>
                             <div class="col mb-0">
-                              <label for="dobWithTitle" class="form-label">Portable</label>
+                              <label for="telm" class="form-label">Télephone</label>
                               <input
                                 type="text"
-                                id="dobWithTitle"
+                                id="telm"
                                 class="form-control"
+                                value={{tel}}
+                                [(ngModel)]="Modifier.telm" [ngModelOptions]="{standalone: true}"
+                              />
+                            </div>
+
+                          </div>
+                          <div class="row g-2">
+                           
+                            <div class="col mb-0">
+                              <label for="portablem" class="form-label">Portable</label>
+                              <input
+                                type="text"
+                                id="portablem"
+                                class="form-control"
+                                [(ngModel)]="Modifier.portablem" [ngModelOptions]="{standalone: true}"
                                 value={{portable}}
                               />
                             </div>
-                          </div>
-                          <div class="row g-2">
                             <div class="col mb-0">
-                              <label for="emailWithTitle" class="form-label">Matricule CNAM</label>
+                              <label for="idcm" class="form-label">Matricule CNAM</label>
                               <input
                                 type="text"
-                                id="emailWithTitle"
+                                id="idcm"
                                 class="form-control"
                                 value={{idc}}
+                                [(ngModel)]="Modifier.idcm" [ngModelOptions]="{standalone: true}"
+                              />
+                            </div>
+
+                          </div>
+                          <div class="row g-2">
+                           
+                            <div class="col mb-0">
+                              <label for="matriculem" class="form-label">Matricule Fiscale</label>
+                              <input
+                                type="text"
+                                id="matriculem"
+                                class="form-control"
+                                value={{matricule}}
+                                [(ngModel)]="Modifier.matriculem" [ngModelOptions]="{standalone: true}"
                               />
                             </div>
                             <div class="col mb-0">
-                              <label for="dobWithTitle" class="form-label">Matricule Fiscale</label>
+                              <label for="idbm" class="form-label">ID Bancaire</label>
                               <input
                                 type="text"
-                                id="dobWithTitle"
+                                id="idbm"
                                 class="form-control"
-                                value={{matricule}}
+                                value={{idb}}
+                                [(ngModel)]="Modifier.idbm" [ngModelOptions]="{standalone: true}"
                               />
                             </div>
+
                           </div>
                           
                           <div class="row g-2">
-                            <div class="col mb-0">
-                              <label for="emailWithTitle" class="form-label">ID Bancaire</label>
-                              <input
-                                type="text"
-                                id="emailWithTitle"
-                                class="form-control"
-                                value={{idb}}
-                              />
-                            </div>
+                           
                             <div class="col mb-0">
                               
                             </div>
@@ -356,9 +364,10 @@
                           <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">
                             Annuler
                           </button>
-                          <button type="button" class="btn btn-primary">Envoyer</button>
+                          <button (click)="onSubmit()" type="button" class="btn btn-primary" >Envoyer</button>
                         </div>
                       </div>
+                    </form>
                     </div>
                   
              

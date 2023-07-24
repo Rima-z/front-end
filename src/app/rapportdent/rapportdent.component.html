@@ -348,9 +348,15 @@
 
                       
                       <div class="pt-4">
-                        <button type="submit" class="btn btn-primary me-sm-3 me-1">Confirmer</button>
+                        <button type="submit" class="btn btn-primary me-sm-3 me-1" ><span (click)="redirectToTraitement()" ></span>Confirmer</button>
                         <button type="button" onClick="window.print()" class="btn btn-outline-primary me-sm-3 me-1">Imprimer</button>
-                        <button type="submit" class="btn btn-outline-danger me-sm-3 me-1">Supprimer</button>
+                       
+                        <button type="button" class="btn btn-outline-danger me-sm-3 me-1" (click)="redirectToTraitement()">
+                          Supprimer
+                        </button>
+                        
+                      
+
                       </div>
                      
                       
